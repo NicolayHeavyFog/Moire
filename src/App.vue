@@ -212,8 +212,11 @@ export default defineComponent({
 
     $store.dispatch("cart/loadCart").then((response: ResponseData) => {
       if (response.success) {
+        if (!userAccessKey) {
+          $store.commit("setUserAccessKey", response.data.user.accessKey);
+          localStorage.setItem("userAccessKey", response.data.user.accessKey);
+        }
         $store.commit("cart/updateCartProductData", response.data.items);
-        // amount.value = $store.getters["moduleA/getTotalAmount"];
       } else {
         // сообщение об ошибке
         console.log("Сообщение об ошибке");

@@ -117,6 +117,7 @@ export default {
     loadCart(context: ActionContext<State, RootState>): Promise<ResponseData> {
       context.state.cartIsLoading = true;
       context.state.cartIsLoaded = false;
+      // const currentAccessKey = context.getters.userAccessKey;
       return axios
         .get(`${API_BASE_URL}/baskets`, {
           params: {
@@ -124,6 +125,7 @@ export default {
           },
         })
         .then((response) => {
+          // console.log("useAccessKey: ", currentAccessKey);
           const r = CartData.safeParse(response.data);
           if (r.success) {
             console.log("Коризина успешно загружена");
