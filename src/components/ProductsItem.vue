@@ -135,7 +135,6 @@ export default defineComponent({
       productFullDataLoad,
       addProductToCart,
       statusProduct,
-      getCurrentProductFromCart,
       colorId,
       sizeId,
       loaderCircle,
@@ -191,7 +190,6 @@ export default defineComponent({
       productAddedIndicator,
       totalAmount,
       declensionWord,
-      getCurrentProductFromCart,
     };
   },
 });

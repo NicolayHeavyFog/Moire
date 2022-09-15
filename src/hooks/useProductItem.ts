@@ -43,7 +43,7 @@ interface returnValue {
   addProductToCart: (value: {
     productId: number;
     colorId: number;
-    sizeId: string;
+    sizeId: number;
     quantity: number;
   }) => void;
 
@@ -56,15 +56,12 @@ interface returnValue {
 
   colorId: Ref<number | null>;
   sizeId: Ref<number | null>;
-  getCurrentProductFromCart: (
-    productId: number,
-    colorId: number,
-    sizeId: number
-  ) => z.infer<typeof ItemCart>;
 
   chosenGalleryItem: Ref<z.infer<typeof Gallery> | undefined>;
   loaderCircle: Ref<any | null>;
   chooseImage: (productColors: z.infer<typeof Colors>) => void;
+
+  currentAddedProduct: Ref<z.infer<typeof ItemCart> | null>;
 }
 
 export default function useProductItem(): returnValue {
@@ -78,6 +75,7 @@ export default function useProductItem(): returnValue {
   const sizeId = ref<number | null>(0);
   const chosenGalleryItem = ref<z.infer<typeof Gallery> | undefined>();
   const loaderCircle = ref<any | null>(null);
+  const currentAddedProduct = ref<z.infer<typeof ItemCart> | null>(null);
   const statusProduct: {
     productIsAdditing: boolean | null;
     productIsAdded: boolean | null;
@@ -152,7 +150,7 @@ export default function useProductItem(): returnValue {
   function addProductToCart(value: {
     productId: number;
     colorId: number;
-    sizeId: string;
+    sizeId: number;
     quantity: number;
   }): void {
     statusProduct.productIsAdditing = true;
@@ -163,6 +161,11 @@ export default function useProductItem(): returnValue {
           if (typeof response === "boolean") {
             statusProduct.productIsAdded = response;
             statusProduct.productIsAdditing = false;
+            currentAddedProduct.value = getCurrentProductFromCart(
+              value.productId,
+              value.colorId,
+              value.sizeId
+            );
           } else if (fieldsError.safeParse(response).success) {
             statusProduct.productIsAdded = false;
             statusProduct.additingIsFailed = true;
@@ -207,10 +210,12 @@ export default function useProductItem(): returnValue {
 
     colorId,
     sizeId,
-    getCurrentProductFromCart,
+    // getCurrentProductFromCart,
 
     chosenGalleryItem,
     loaderCircle,
     chooseImage,
+
+    currentAddedProduct,
   };
 }

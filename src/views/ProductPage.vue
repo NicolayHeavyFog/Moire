@@ -66,14 +66,14 @@
       <template v-slot:text>
         <div class="cart-mention__description">
           <span class="cart-mention__price">
-            {{ numberFormat(product.price) }} ₽</span
+            {{ numberFormat(currentAddedProduct.price) }} ₽</span
           >
-          <span class="cart-mention__title"> Товар "{{ product.title }}"</span>
+          <span class="cart-mention__title">
+            Товар "{{ currentAddedProduct.product.title }}"</span
+          >
           <span class="cart-mention__quntity">
             Количество:
-            {{
-              getCurrentProductFromCart(product.id, colorId, sizeId).quantity
-            }}
+            {{ currentAddedProduct.quantity }}
           </span>
         </div>
       </template>
@@ -83,8 +83,7 @@
             Всего:
             {{
               numberFormat(
-                getCurrentProductFromCart(product.id, colorId, sizeId)
-                  .quantity * product.price
+                currentAddedProduct.quantity * currentAddedProduct.price
               )
             }}
             ₽</span
@@ -234,20 +233,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, watch, ComputedRef } from "vue";
+import { defineComponent, ref, computed, watch } from "vue";
 import numberFormat from "@/helpers/numberFormat";
 import BaseButton from "@/components/BaseButton.vue";
 import BaseLoaderCircle from "@/components/BaseLoaderCircle.vue";
 import BaseCharacteristicProduct from "@/components/BaseCharacteristicProduct.vue";
 import BaseNotification from "@/components/BaseNotification.vue";
-import { Gallery, ItemCart } from "@/types";
 import { useRoute } from "vue-router";
-import { useStore } from "vuex";
 import useProductItem from "@/hooks/useProductItem";
 import mutateProductData from "@/helpers/mutateProductData";
 import declensionWord from "@/helpers/declensionWord";
 import useOrder from "@/hooks/useOrder";
-import { z } from "zod";
 export default defineComponent({
   components: {
     BaseLoaderCircle,
@@ -257,7 +253,6 @@ export default defineComponent({
   },
   setup() {
     const $route = useRoute();
-    // const $store = useStore();
     const {
       productFullData,
       productFullDataLoad,
@@ -270,10 +265,12 @@ export default defineComponent({
       statusProduct,
       colorId,
       sizeId,
-      getCurrentProductFromCart,
+      // getCurrentProductFromCart,
       loaderCircle,
       chosenGalleryItem,
       chooseImage,
+
+      currentAddedProduct,
     } = useProductItem();
     const { totalAmount } = useOrder();
 
@@ -326,7 +323,8 @@ export default defineComponent({
       chosenGalleryItem,
       totalAmount,
       declensionWord,
-      getCurrentProductFromCart,
+
+      currentAddedProduct,
     };
   },
 });
