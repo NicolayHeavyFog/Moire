@@ -163,9 +163,7 @@ export default {
           return r;
         })
         .catch((e: AxiosError) => {
-          console.log(e);
           const r = ErrorOrderNotFound.safeParse(e.response);
-          console.log(r);
           if (r.success) {
             console.log("по такому id заказ найти не удалось");
           }

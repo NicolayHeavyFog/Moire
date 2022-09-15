@@ -30,7 +30,6 @@ export default {
           },
         })
         .then((response) => {
-          console.log(ProductsData.safeParse(response.data));
           return ProductsData.safeParse(response.data);
         });
     },

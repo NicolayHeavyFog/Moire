@@ -45,8 +45,6 @@ export default function useCartItem(
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       if (currentQuntity.value >= 1) {
-        // console.log($event);
-        // console.log(currentQuntity.value);
         picIsLoad.value = false;
         $store
           .dispatch("cart/updateQuantityProduct", {

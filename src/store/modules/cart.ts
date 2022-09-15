@@ -125,7 +125,6 @@ export default {
           },
         })
         .then((response) => {
-          // console.log("useAccessKey: ", currentAccessKey);
           const r = CartData.safeParse(response.data);
           if (r.success) {
             console.log("Коризина успешно загружена");

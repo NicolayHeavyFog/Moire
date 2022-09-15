@@ -46,6 +46,7 @@ export default function useProductStatus(): returnValue {
       .then(() => {
         return new Promise<void>((resolve) => {
           setTimeout(() => {
+            if (!value.productAddedIndicator.value?.$el) return;
             value.productAddedIndicator.value.$el.classList.remove("active");
             resolve();
           }, 2000);
@@ -54,6 +55,7 @@ export default function useProductStatus(): returnValue {
       .then(() => {
         return new Promise<void>((resolve) => {
           setTimeout(() => {
+            if (!value.productAddedIndicator.value?.$el) return;
             value.productAddedIndicator.value.$el.classList.add("fade");
             document.body.style.overflow = "visible";
             resolve();

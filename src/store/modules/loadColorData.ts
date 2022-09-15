@@ -11,13 +11,6 @@ export interface SuccessRequets {
 }
 export type ResponseData = SuccessRequets | FailureRequest;
 
-// "items": [
-//   {
-//     "id": 20,
-//     "title": "Red",
-//     "code": "#dd0808"
-//   },
-
 export default {
   actions: {
     loadColors(): Promise<ResponseData> {

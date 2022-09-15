@@ -1,7 +1,7 @@
 import { onMounted, ref, Ref, reactive } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
-import { Order, FailureRequest, ErrorOrderNotFound } from "@/types";
+import { Order, ItemCart, FailureRequest, ErrorOrderNotFound } from "@/types";
 import { z } from "zod";
 
 interface returnValues {
@@ -22,6 +22,12 @@ function isOrderNotFound(
   value: unknown
 ): value is z.infer<typeof ErrorOrderNotFound> {
   return ErrorOrderNotFound.safeParse(value).success;
+}
+
+function getTotalAmount(basketItems: z.infer<typeof ItemCart>[]) {
+  return basketItems.reduce((acc, currentItem) => {
+    return acc + currentItem.quantity;
+  }, 0);
 }
 
 export default function useOrderInfo(): returnValues {
@@ -55,26 +61,26 @@ export default function useOrderInfo(): returnValues {
           ) => {
             if (response.success) {
               if (isOrder(response.data)) {
-                console.log("its ok");
                 orderData.value = response.data;
+                orderProductTotalAmount.value = getTotalAmount(
+                  orderData.value.basket.items
+                );
+                orderInfoStatus.loading = false;
                 orderInfoStatus.loaded = true;
               } else if (isOrderNotFound(response.data)) {
-                console.log("is error");
                 orderInfoStatus.textError = response.data.data.error.message;
                 orderInfoStatus.loaded = false;
               }
             }
+            orderInfoStatus.loading = false;
           }
         );
-      orderInfoStatus.loading = false;
     }
     if (orderData.value) {
-      orderProductTotalAmount.value = orderData.value.basket.items.reduce(
-        (acc, currentItem) => {
-          return acc + currentItem.quantity;
-        },
-        0
+      orderProductTotalAmount.value = getTotalAmount(
+        orderData.value.basket.items
       );
+
       orderInfoStatus.loading = false;
       orderInfoStatus.loaded = true;
     }

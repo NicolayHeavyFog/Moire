@@ -47,7 +47,7 @@
       "
     />
 
-    <BaseNotification
+    <!-- <BaseNotification
       :condition="statusProduct.productIsAdded"
       :text-header="`Моя корзина, ${totalAmount} ${declensionWord(
         totalAmount
@@ -90,7 +90,7 @@
           >
         </div>
       </template>
-    </BaseNotification>
+    </BaseNotification> -->
   </li>
 </template>
 
@@ -116,7 +116,7 @@ export default defineComponent({
     BaseLoaderCircle,
     BaseCharacteristicProduct,
     ProductStatus,
-    BaseNotification,
+    // BaseNotification,
   },
   props: {
     product: {
@@ -170,7 +170,6 @@ export default defineComponent({
           loaderCircle.value.$el.style.display = "none";
           loaderCircle.value.$el.classList.remove("active");
         }
-        console.log(statusProduct);
         handlerStatus({ statusProduct, productAddedIndicator }, false);
       },
       { deep: true }
