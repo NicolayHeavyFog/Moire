@@ -42,7 +42,6 @@ export default defineComponent({
       type: Object as PropType<z.infer<typeof ItemCart>[]>,
     },
     totalAmount: {
-      // required: true,
       type: Number,
     },
     priceDelivery: {

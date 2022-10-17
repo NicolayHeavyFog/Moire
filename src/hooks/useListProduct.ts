@@ -26,8 +26,6 @@ export function useListProduct(): returnValue {
       .then((response: ResponseData): void => {
         if (response.success) {
           data.value = response.data;
-        } else {
-          console.log("сообщение об ошибке");
         }
 
         statusLoading.isLoading = false;

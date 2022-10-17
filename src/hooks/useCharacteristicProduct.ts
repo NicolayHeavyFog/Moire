@@ -32,7 +32,6 @@ export default function useCharacteristicProduct(): returnValue {
 
   function isSizes(value: unknown): value is z.infer<typeof Sizes> {
     try {
-      // console.log(Size.safeParse(value));
       Sizes.parse(value);
     } catch (e) {
       if (e instanceof ZodError) {

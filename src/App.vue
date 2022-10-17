@@ -217,15 +217,10 @@ export default defineComponent({
           localStorage.setItem("userAccessKey", response.data.user.accessKey);
         }
         $store.commit("cart/updateCartProductData", response.data.items);
-      } else {
-        // сообщение об ошибке
-        console.log("Сообщение об ошибке");
       }
     });
 
-    return {
-      // amount,
-    };
+    return {};
   },
 });
 </script>

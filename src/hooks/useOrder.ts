@@ -125,8 +125,6 @@ export default function useOrder(): returnValues {
         ) => {
           if (response.success) {
             availableDeliveries.value = response.data;
-          } else {
-            console.log("Ошибка в получении категории из useOrder");
           }
           statusAvailableDeliveries.loading = false;
           statusAvailableDeliveries.loaded = true;
@@ -147,8 +145,6 @@ export default function useOrder(): returnValues {
         ) => {
           if (response.success) {
             availablePayments.value = response.data;
-          } else {
-            console.log("Произошла ошибка");
           }
           statusAvailablePayments.loading = false;
           statusAvailablePayments.loaded = true;

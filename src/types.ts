@@ -183,26 +183,6 @@ export const ErrorOrderNotFound = z.object({
   }),
 });
 
-// const orderFieldsRequest = z.object({
-//   name: z.string(),
-//   address: z.string(),
-//   phone: z.string(),
-//   email: z.string(),
-//   deliveryTypeId: z.number(),
-//   paymentTypeId: z.number(),
-//   comment: z.string(),
-// });
-
-// {
-//   "name": "string",
-//   "address": "string",
-//   "phone": "string",
-//   "email": "string",
-//   "deliveryTypeId": 0,
-//   "paymentTypeId": 0,
-//   "comment": "string"
-// }
-
 export interface File {
   url: string;
   name: string;

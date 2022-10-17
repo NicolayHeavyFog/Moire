@@ -265,7 +265,6 @@ export default defineComponent({
       statusProduct,
       colorId,
       sizeId,
-      // getCurrentProductFromCart,
       loaderCircle,
       chosenGalleryItem,
       chooseImage,

@@ -87,7 +87,6 @@ export default defineComponent({
         context.emit("update:param", props.characteristics[0].id);
         return props.characteristics[0].id;
       }
-      // if (style === "sizes") return props.characteristics[0].id;
       return 0;
     });
     currentParam.value = initialParam.value;
@@ -98,18 +97,13 @@ export default defineComponent({
       }
     );
 
-    watch(
-      currentParam,
-      () => {
-        context.emit("update:param", currentParam.value);
-      }
-      // { immediate: true }
-    );
+    watch(currentParam, () => {
+      context.emit("update:param", currentParam.value);
+    });
 
     return {
       style,
       currentParam,
-      // cParam,
       setColor,
     };
   },

@@ -74,8 +74,6 @@ export default function useProductFilter(): returnValues {
         ): void => {
           if (response.success) {
             categoriesArr.value = response.data;
-          } else {
-            console.log("Ошибка в загрузке категорий");
           }
           loadingCategories.value = false;
         }
@@ -94,8 +92,6 @@ export default function useProductFilter(): returnValues {
         ): void => {
           if (response.success) {
             materialsArr.value = response.data;
-          } else {
-            console.log("Ошибка в загрузке материалов");
           }
           loadingMaterials.value = false;
         }
@@ -114,8 +110,6 @@ export default function useProductFilter(): returnValues {
         ): void => {
           if (response.success) {
             seasonsArr.value = response.data;
-          } else {
-            console.log("Ошибка в загрузке сезонов");
           }
           loadingSeasons.value = false;
         }
@@ -134,8 +128,6 @@ export default function useProductFilter(): returnValues {
         ): void => {
           if (response.success) {
             colorsArr.value = response.data;
-          } else {
-            console.log("Ошибка в получении цветов");
           }
         }
       );

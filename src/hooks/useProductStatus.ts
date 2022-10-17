@@ -98,7 +98,6 @@ export default function useProductStatus(): returnValue {
       value.productAddedIndicator.value.$el.classList.remove("fade");
       value.productAddedIndicator.value.$el.classList.remove("success");
       value.productAddedIndicator.value.$el.classList.remove("failed");
-      // document.body.style.overflow = "visible";
     }
   }
 

@@ -105,8 +105,6 @@ export default function useProductItem(): returnValue {
       .then((response: ResponseData) => {
         if (response.success) {
           productFullData.value = response.data;
-        } else {
-          console.log("Ошибка при получении всех параметров продукта");
         }
       })
       .then(() => (productFullDataLoad.value = true));
@@ -210,7 +208,6 @@ export default function useProductItem(): returnValue {
 
     colorId,
     sizeId,
-    // getCurrentProductFromCart,
 
     chosenGalleryItem,
     loaderCircle,

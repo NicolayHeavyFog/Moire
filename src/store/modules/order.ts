@@ -94,23 +94,12 @@ export default {
         )
         .then((response) => {
           const r = Order.safeParse(response.data);
-
-          // this.$store.commit("resetCart");
-          // this.$store.commit("updateOrderInfo", response.data);
-          // this.$router.push({
-          //   name: "orderInfo",
-          //   params: { id: response.data.id },
-          // });
           return r;
         })
         .catch((error) => {
           const e = ErrorOrder.safeParse(error.response);
           return { ...e, err: true };
         });
-      // .catch((error) => {
-      //   this.formError = error.response.data.error.request || {};
-      //   this.formErrorMessage = error.response.data.error.message;
-      // });
     },
     typesOfDelivery(): Promise<ResponseDeliveriesData> {
       return axios.get(`${API_BASE_URL}/deliveries`).then((response) => {

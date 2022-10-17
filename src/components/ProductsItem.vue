@@ -116,7 +116,6 @@ export default defineComponent({
     BaseLoaderCircle,
     BaseCharacteristicProduct,
     ProductStatus,
-    // BaseNotification,
   },
   props: {
     product: {
